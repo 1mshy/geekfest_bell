@@ -1,14 +1,14 @@
 import { Component } from "react";
 import React from "react";
-import { Button, Container, List, TextField, Typography } from "@mui/material";
+import { Button, Container, List, TextField, Tooltip, Typography } from "@mui/material";
 import "./container.css";
-import { checkPassword } from "./calculation";
+import { checkPassword, isStrong } from "./calculation";
 
 
 class PasswordGUI extends Component {
     constructor(props) {
         super(props);
-        this.state = { textField: "", show_password: false, showcase: [] };
+        this.state = { textField: "", showcase: [] };
 
         this.textFieldChange = this.textFieldChange.bind(this);
         this.onButtonClick = this.onButtonClick.bind(this);
@@ -17,58 +17,64 @@ class PasswordGUI extends Component {
 
     textFieldChange(e) {
         let textField = e.target.value;
+        let showcase = this.makeShowcase();
+        this.setState({ ...this.state, textField: textField, showcase: showcase });
+        // navigator.clipboard.writeText(textField);
+    }
+
+    makeShowcase() {
         let showcase = [];
         for (let i = 0; i < this.suggested_length; i++) {
-            showcase.push(checkPassword(textField));
+            showcase.push(checkPassword(this.state.textField));
         }
-        this.setState({ textField: textField, showcase: showcase });
-        // navigator.clipboard.writeText(textField);
+        return showcase;
     }
 
     onButtonClick(e) {
         e.preventDefault();
         console.log("button clicked");
-        this.setState({ show_password: true });
+        this.setState({ ...this.state, showcase: this.makeShowcase() });
     }
 
     render() {
-        const { show_password } = this.state;
+        const { textField } = this.state;
         return (
             // create a container for the password checker page
             <Container className={"centered"}
             >
-                <Typography component="h1" variant="h5">
+                <h2 className="title" >
+                    Website 🙌
+                </h2>
+                <TextField />
+
+                <h2 className="title" >
                     Password 🔑
-                </Typography>
-                <TextField onChange={this.textFieldChange} />
-                {/* <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                    onClick={this.onButtonClick}
-                >
+                </h2>
+                <TextField onChange={this.textFieldChange} value={textField} />
 
-                   
-                    
-                    Check Passowrd
-                </Button> */}
-                <Typography component="h2" variant="h5">
-                    Suggested Passwords:
-                </Typography>
-                <List>
-                    {this.state.showcase.map((password) => (
-                        <Typography className="pass" onClick={(e) => {
-                            this.setState({ textField: password });
-                        }}>
-                            {password}
-                        </Typography>
-                    ))
-                    }
+                {!(isStrong(textField) || textField === "") && <>
+                    <Typography component="h2" variant="h5">
+                        Suggested Passwords:
+                    </Typography>
+                    <List>
+                        {this.state.showcase.map((password, index) => (
+                            <Tooltip title="Click to set" key={index} arrow>
+                                <Typography className="pass"
+                                    
+                                    onMouseDown={(e) => {
+                                        console.log("clicked");
+                                        this.setState({ ...this.state, textField: password });
+                                    }}>
+                                    {password}
+                                </Typography>
+                            </Tooltip>
+                        ))
+                        }
 
-                </List>
-
-                <Button onClick={this.onButtonClick}>Generate new</Button>
+                    </List>
+                    <Button onClick={this.onButtonClick}>Generate new</Button>
+                </>}
+                <br></br>
             </Container>
 
         );
