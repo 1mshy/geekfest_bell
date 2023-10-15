@@ -25,3 +25,12 @@ This is a simple web-based password manager that allows users to store their pas
 - User can store passwords in a database
 - User can view all recommended passwords
 
+## Next Steps
+Although passwords can be posted, they cannot be retrieved from the database. The next step would be to implement full CRUD functionality. (Create, Read, Update, Delete)
+
+- User can view all passwords
+- User can update passwords
+- User can delete passwords
+- User can view a single password
+
+Meanwhile, all of this should be done in a secure manner. The next step would be to implement authentication and authorization. In order for the user to get passwords, they would have to be logged in & copy the password to their clipboard.
