@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import PasswordGUI from './PasswordGUI';
+import React from 'react';
 
 function App() {
   return (
