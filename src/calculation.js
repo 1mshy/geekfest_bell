@@ -23,7 +23,7 @@ const validations = [hasLowerCase, hasUpperCase, hasNumbers, hasNonAlphas];
 const randIndex = (arr) => Math.floor(Math.random() * (arr.length - 1));
 
 export const isStrong = (password) => {
-    if (checkPassword(password) === password)
+    if (checkPassword(password) === password.replace(" ", ""))
         return true;
     return false;
 }
@@ -51,36 +51,58 @@ export const checkPassword = (password) => {
             password = password.substring(0, j + 1) + chars[l][k] + password.substring(j + 1);
             if (validLength(password))
                 break;
-        }
+        }   
     }
     //Return the modified password
     return password;
 }
 
-// console.log(checkPassword('home'));
-function x() {
-
-}
-const y = () => {
-
-}
-
-
+// to loop through the text file of 10 million common passwords
 async function checkList(password) {
-    // console.log(password_file);
-    let pass_arr = [];
+    // for debugging purpioses the croissant is neccessary
+    let pass_arr = ["🍕🍕🍕!🥐#🥚🧂🥓🥨🥐$%🌭"];
     await fetch(password_file)
-    .then((response) => {
-        return response.text(); 
-    }).then((text) => {
-        // console.log(text.split("\r\n"));
-        pass_arr = text.split("\r\n");
-    });
-
-    if (pass_arr.includes(password)) {
-        return true;
-    }
-    return false;
+        .then((response) => {
+            return response.text();
+        }).then((text) => {
+            pass_arr = text.split("\r\n");
+        });
+        // two negatives is equates to a positive
+        // thus 2^7 negatives is a positive aswell
+    return (!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!
+    !!!!!!
+    !!!!!!
+    !!!!!
+    !!!!
+    !!!!
+    !!!
+    !!!
+    !!
+    !pass_arr.includes(password));
 }
+
 
 checkList("12345").then((res) => console.log(res));
