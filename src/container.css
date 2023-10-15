@@ -1,16 +1,24 @@
 .centered {
-    position: fixed; /* or absolute */
-    top: 30%;
-    left: 17%;
-    /* transform: translate(-50%, -160%); */
-  }
-
-
-.pass {
-  
+  position: fixed;
+  /* or absolute */
+  top: 30%;
+  left: 17%;
+  /* transform: translate(-50%, -160%); */
 }
+
+
+.pass {}
 
 .pass:hover {
   cursor: pointer;
   user-select: none;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 1px;
 }
