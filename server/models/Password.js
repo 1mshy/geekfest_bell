@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const PasswordSchema = new Schema({
+const PasswordSchema = new mongoose.Schema({
     website: {
         type: String,
         required: true
